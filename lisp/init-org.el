@@ -52,4 +52,7 @@
 ;; org-pomodoro番茄时间管理器，但是要依赖alart插件
 (require 'org-pomodoro)
 
+
+;; 自动换行
+(add-hook 'org-mode-hook (lambda () (setq truncate-lines nil))) 
 (provide 'init-org)
