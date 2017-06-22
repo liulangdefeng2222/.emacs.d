@@ -64,6 +64,8 @@
   (require 'init-neotree)
   ;;对org的相关设置
   (require 'init-org)
+  ;;org-bullets mode
+  (require 'init-org-bullets)
   ;;加载popwin
   (require 'init-popwin)
   ;;加载powerline
@@ -84,6 +86,17 @@
   (require 'init-langtool)
   ;;编码和字体设置
   (require 'init-unicode-fonts)
+  ;;  (require 'init-workgroups2)
+  (require 'init-slime)
+  ;;没有垃圾
+  (use-package no-littering
+    :ensure t
+    :config
+    (require 'recentf)
+    (add-to-list 'recentf-exclude no-littering-var-directory)
+    (add-to-list 'recentf-exclude no-littering-var-directory))
+  ;;插入时间的package不好用
+  ;;(require 'insert-time)
   ;;加载molokai主题,molokai必须放在window-numbering后面，
   ;;否则会出现左下角窗口编号看不见的情况,放在最后还有一个好处
   ;;就是能够知道init.el文件是否配置正确
@@ -95,6 +108,7 @@
   (load-file custom-file)
   )
 
+;;(add-to-list 'interpreter-mode-alist '("node" . js2-mode)) ;;直接指定什么文件调用什么函数
 ;;(require 'server)
 ;;(server-mode 1)
 ;;(server-start)
@@ -106,9 +120,11 @@
 ;;  (setq server-auth-dir "d:\\")
 ;;  (setq server-name "emacs-server-file")
 ;;  (unless (server-running-p) (server-start)))
-
+;; (fringe-mode minimal)
 (setq server-auth-dir "d:\\wo\\")
 (setq server-name "emacs-server-file")
 (server-start)
+
 ;;启动画面
 (require 'init-diy-dashboard)
+

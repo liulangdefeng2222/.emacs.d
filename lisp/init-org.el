@@ -5,7 +5,7 @@
 
 (add-hook 'org-mode-hook 'turn-on-stripe-table-mode)
 (add-hook 'org-mode-hook 'company-ispell)
-(add-hook 'org-mode-hook 'company-en-words-enable)
+;;(add-hook 'org-mode-hook 'company-en-words-enable)
 
 (setq org-publish-project-alist
       '(("note-org"
@@ -54,5 +54,23 @@
 
 
 ;; 自动换行
-(add-hook 'org-mode-hook (lambda () (setq truncate-lines nil))) 
+(add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))
+
+;;定义agenda file,只要有agenda的file添加到这里就好
+;;(setq org-agenda-files (list "~/org/what-to-do-everyday.org"
+;;                                       ))
+;;
+
+;;org导出pdf
+(require 'ox-latex-chinese)
+(oxlc/toggle-ox-latex-chinese t)
+;;禁用自动设置latex字体功能
+;;(setq oxlc/org-latex-fonts nil)
+;; (setq org-latex-create-formula-image-program 'dvipng)    ;；速度快但是默认不支持中文
+;;(setq org-latex-create-formula-image-program 'imagemagick)  ;; 速度慢但是支持中文
+;;(setq org-format-latex-options
+;;      (plist-put org-format-latex-options :scale 2.0))      ;；调整latex预览图片的大小
+;;(setq org-format-latex-options
+;;      (plist-put org-format-latex-options :html-scale 2.5)) ;；调整HTML文件中latex图片的大小
+;;(setq oxlc/org-latex-commands '("latexmk -xelatex -gg -pdf %b.tex"))
 (provide 'init-org)

@@ -13,7 +13,7 @@
             'auto-complete-mode
             'autopair-mode
 	    'company-ispell
-	    'flyspell-mode	    
+	   ;; 'flyspell-mode	    
             'LaTeX-math-mode
             'linum-mode
 	   #'LaTeX-preview-setup	    
@@ -37,8 +37,8 @@
             (TeX-global-PDF-mode t)       ; PDF mode enable, not plain
             (setq TeX-save-query nil)
             (imenu-add-menubar-index)
-	    (setq abbrev-mode t)
-            (setq local-abbrev-table TeX-mode-abbrev-table)))
+	    (setq abbrev-mode t)))
+            ;;(setq local-abbrev-table TeX-mode-abbrev-table)))
             ;;(define-key LaTeX-mode-map (kbd "TAB") 'TeX-complete-symbol)
 
 

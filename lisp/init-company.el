@@ -78,39 +78,40 @@
 
 
 ;; {{ setup company-ispell
-(defun toggle-company-ispell ()
-  (interactive)
-  (cond
-   ((memq 'company-ispell company-backends)
-    (setq company-backends (delete 'company-ispell company-backends))
-    (message "company-ispell disabled"))
-   (t
-    (add-to-list 'company-backends 'company-ispell)
-    (message "company-ispell enabled!"))))
+;;(defun toggle-company-ispell ()
+;;  (interactive)
+;;  (cond
+;;   ((memq 'company-ispell company-backends)
+;;    (setq company-backends (delete 'company-ispell company-backends))
+;;    (message "company-ispell disabled"))
+;;   (t
+;;    (add-to-list 'company-backends 'company-ispell)
+;;    (message "company-ispell enabled!"))))
 
-(defun company-ispell-setup ()
+;;(defun company-ispell-setup ()
   ;; @see https://github.com/company-mode/company-mode/issues/50
-  (when (boundp 'company-backends)
-    (make-local-variable 'company-backends)
-    (add-to-list 'company-backends 'company-ispell)
+;;  (when (boundp 'company-backends)
+;;    (make-local-variable 'company-backends)
+;;    (add-to-list 'company-backends 'company-ispell)
     ;; https://github.com/redguardtoo/emacs.d/issues/473
-    (if (and (boundp 'ispell-alternate-dictionary)
-             ispell-alternate-dictionary)
-        (setq company-ispell-dictionary ispell-alternate-dictionary))))
+;;    (if (and (boundp 'ispell-alternate-dictionary)
+;;             ispell-alternate-dictionary)
+;;        (setq company-ispell-dictionary ispell-alternate-dictionary))))
 
 ;; message-mode use company-bbdb.
 ;; So we should NOT turn on company-ispell
-(add-hook 'org-mode-hook 'company-ispell-setup)
+;;
+;;(add-hook 'org-mode-hook 'company-ispell-setup)
 ;; }}
-(eval-after-load 'company-etags
-  '(progn
+;;(eval-after-load 'company-etags
+;;  '(progn
      ;; insert major-mode not inherited from prog-mode
      ;; to make company-etags work
-     (add-to-list 'company-etags-modes 'web-mode)
-     (add-to-list 'company-etags-modes 'lua-mode)))
+;;     (add-to-list 'company-etags-modes 'web-mode)
+;;     (add-to-list 'company-etags-modes 'lua-mode)))
 
 ;;(global-set-key (kbd "C-c C-p") 'company-mode)
 ;;引入单词
-(load "~/.emacs.d/lisp/company-words.el")
+;;(load "~/.emacs.d/lisp/company-words.el")
 ;;(company-en-words-enable t)
 (provide 'init-company)

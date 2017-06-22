@@ -8,6 +8,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(TeX-engine (quote xetex))
  '(TeX-source-correlate-method (quote synctex))
  '(TeX-source-correlate-mode t)
  '(TeX-source-correlate-start-server t)
@@ -41,13 +42,18 @@
 ________________________________________________________________________________
 ")
  '(default-frame-alist (quote ((vertical-scroll-bars) (Lucida\ Console\  . 12))))
+ '(fringe-mode (quote (1 . 1)) nil (fringe))
  '(ido-enable-flex-matching t)
  '(neo-theme (quote classic))
+ '(org-agenda-files (list org-directory))
+ '(org-directory "~/org")
+ '(org-log-done (quote note))
+ '(org-log-reschedule (quote note))
  '(org-pomodoro-long-break-length 40)
  '(org-publish-timestamp-directory "~\\org\\.org-timestamps\\")
  '(package-selected-packages
    (quote
-    (unicode-fonts wgrep langtool dashboard counsel-dash magit-popup org with-editor bind-key keyfreq chinese-fonts-setup all-the-icons neotree cdlatex latex-preview-pane stripe-buffer dired+ artbollocks-mode ido-ubiquitous dired-icon diredful auto-complete matlab-mode magit use-package swiper-helm abyss-theme popwin auto-yasnippet yasnippet org-pomodoro flycheck ag iedit smartparens powerline window-numbering molokai-theme package-build shut-up epl git commander f dash s auctex cl-lib company)))
+    (company no-littering ox-latex-chinese slime workgroups2 org-bullets dashboard unicode-fonts wgrep langtool counsel-dash magit-popup org with-editor bind-key keyfreq chinese-fonts-setup all-the-icons neotree cdlatex latex-preview-pane stripe-buffer dired+ artbollocks-mode ido-ubiquitous dired-icon diredful auto-complete matlab-mode magit use-package swiper-helm abyss-theme popwin auto-yasnippet yasnippet org-pomodoro flycheck ag iedit smartparens powerline window-numbering molokai-theme package-build shut-up epl git commander f dash s auctex cl-lib)))
  '(popwin:popup-window-position (quote right))
  '(popwin:popup-window-width 80)
  '(which-key-idle-delay 0.2)
