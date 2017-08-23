@@ -1,5 +1,4 @@
 ;;统一编码字体设置
-(require 'unicode-fonts)
-(unicode-fonts-setup)
+(autoload 'unicode-fonts-setup "unicode-fonts")
 
 (provide 'init-unicode-fonts)

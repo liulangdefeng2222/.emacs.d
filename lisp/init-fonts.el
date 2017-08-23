@@ -29,16 +29,18 @@
 
 (set-default buffer-file-coding-system 'utf-8-unix)
 (set-default-coding-systems 'utf-8-unix)
-(setq-default pathname-coding-system 'euc-cn)
-(setq file-name-coding-system 'euc-cn)
+(setq-default pathname-coding-system 'utf-8)
+;;(setq-default pathname-coding-system 'euc-cn) 
+(setq file-name-coding-system 'utf-8) 
+;;(setq file-name-coding-system 'euc-cn)
 
 
-  (set-terminal-coding-system 'gb18030)
+  (set-terminal-coding-system 'utf-8)
   (set-keyboard-coding-system 'gb18030)
-  (set-selection-coding-system 'gb18030)
+;;  (set-selection-coding-system 'gb18030)
   (setq locale-coding-system 'gb18030)
   
   
   (prefer-coding-system 'utf-8)
-  (prefer-coding-system 'gb18030) 
+;;  (prefer-coding-system 'gb18030) 
 (provide 'init-fonts)

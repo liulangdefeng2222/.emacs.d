@@ -1,5 +1,5 @@
-(add-hook 'dired-mode-hook 'turn-on-stripe-buffer-mode)
-(add-hook 'dired-mode-hook 'stripe-listify-buffer)
+;;(add-hook 'dired-mode-hook 'turn-on-stripe-buffer-mode)
+;;(add-hook 'dired-mode-hook 'stripe-listify-buffer)
 
 ;; search file name only when focus is over file
 (setq dired-isearch-filenames 'dwim)

@@ -9,7 +9,8 @@
 ;;    C-c C-r 重命名文件或目录。
 ;;    C-c C-c 改变根目录。
 
-(require 'neotree)
+;;(require 'neotree)
+(eval-after-load 'neotree-mode-hook t)
 (global-set-key [f8] 'neotree-toggle)
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 

@@ -2,14 +2,23 @@
 ;; istalled packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-;;(server-start) 
+;;(server-start)
+;; time the loading of the .emacs
+;; keep this on top of your .emacs
+(defvar *emacs-load-start* (current-time))
+(defun anarcat/time-to-ms (time)
+  (+ (* (+ (* (car time) (expt 2 16)) (car (cdr time))) 1000000) (car (cdr (cdr time)))))
+(defun anarcat/display-timing ()
+  (message ".emacs loaded in %fms" (/ (- (anarcat/time-to-ms (current-time)) (anarcat/time-to-ms *emacs-load-start*)) 1000000.0)))
+(add-hook 'after-init-hook 'anarcat/display-timing t)
+
+
 (require 'package) ;; You might already have this line
 (package-initialize)
 (setq package-archives '(("melpa"     ."https://melpa.org/packages/")
-			 ("gnu"       ."http://elpa.gnu.org/packages/")
+			 ("gnu"      . "http://elpa.gnu.org/packages/")
 			 ("gnu-cn"    ."http://elpa.emacs-china.org/gnu/")
 		         ("melpa-cn"  ."http://elpa.emacs-china.org/melpa/")))
-
 ;;==============================================================================
 ;;把HOME录lisp/添加到搜索路径中去
 ;;(add-to-list 'load-path "~/.emacs.d/lisp")
@@ -34,11 +43,18 @@
 
   ;;(require 'cygwin)
   ;;(require 'setup-cygwin)
-  ;;自动加载文件
-  (require 'init-autoload)
   ;;缩写词汇总
   ;;(require 'init-abbrev)
+
+  
+;; ============================================================  
+  ;;加载字体
+  ;;一定要先加载字体，否则有些时候就会出错
+  (require 'init-fonts)
+  ;;自动加载文件
+  (require 'init-autoload)
   ;;加载init-ag-helm-ag
+  (require 'idle-require)
   (require 'init-ag-helm-ag)  
   ;;加载artbollocks-mode
   (require 'init-artbollocks-mode)
@@ -52,12 +68,10 @@
   (require 'init-expend-region)
   ;;加载init-flycheck
   (require 'init-flycheck)
-  ;;加载字体
-  (require 'init-fonts)
   ;;加载iedit
   (require 'init-iedit)
   ;;keyfreq
-  (require 'init-keyfreq)
+;;  (require 'init-keyfreq)
   ;;LaTeX配置
   (require 'init-latex) 
   ;;init-nerotree
@@ -75,19 +89,23 @@
   ;;加载swiper和counsel
   (require 'init-swiper-counsel)
   ;;init-sumatra-forward
-  (require 'init-sumatra-forward)
+  (require 'init-sumatra-forward) 
   ;;加载window-numbering
   (require 'init-window-numbering)
+  ;;切换窗口
+  (require 'init-ace-window)
   ;;加载init-which-key
   (require 'init-which-key)  
   ;;加载对emacs界面的操作
   (require 'init-ui)
   ;;语法检查插件langtool
-  (require 'init-langtool)
+  ;;(require 'init-langtool)
   ;;编码和字体设置
   (require 'init-unicode-fonts)
   ;;  (require 'init-workgroups2)
   (require 'init-slime)
+  ;;打开最近的文件
+  (require 'init-ivy-dired-history)
   ;;没有垃圾
   (use-package no-littering
     :ensure t
@@ -108,23 +126,10 @@
   (load-file custom-file)
   )
 
-;;(add-to-list 'interpreter-mode-alist '("node" . js2-mode)) ;;直接指定什么文件调用什么函数
-;;(require 'server)
-;;(server-mode 1)
-;;(server-start)
-;;(use-package server
-;;  :ensure nil
-;;  :defer t
-;;  :config
-;;  (autoload 'server-running-p "server")
-;;  (setq server-auth-dir "d:\\")
-;;  (setq server-name "emacs-server-file")
-;;  (unless (server-running-p) (server-start)))
-;; (fringe-mode minimal)
-(setq server-auth-dir "d:\\wo\\")
-(setq server-name "emacs-server-file")
+
 (server-start)
 
+
 ;;启动画面
-(require 'init-diy-dashboard)
+;;(require 'init-diy-dashboard)
 

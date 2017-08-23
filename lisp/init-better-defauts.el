@@ -159,26 +159,68 @@
 (setq-default auto-image-file-mode t)
 ;;(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
+;;区域选中，emacs设置MarkSet命令默认绑定到Ctrl-SPACE，与系统输入法开关冲突，
+;;将其绑定到Meta-SPACE
+(global-unset-key (kbd "C-SPC"))  
+(global-set-key (kbd "M-SPC") 'set-mark-command) 
+;;=========================================================================
+;; 显示时间
+
+  (display-time-mode 1)
+  (setq display-time-24hr-format t) 
+  (setq display-time-day-and-date t) ;; 显示时间、星期、日期
 
 ;;=========================================================================
-;;文件按分类排序
-(defun xah-dired-sort ()
-  "Sort dired dir listing in different ways.
-Prompt for a choice.
-URL `http://ergoemacs.org/emacs/dired_sort.html'
-Version 2015-07-30"
+;; move region lift/right
+; Shift the selected region right if distance is postive, left if
+;; negative
+
+(defun shift-region (distance)
+  (let ((mark (mark)))
+    (save-excursion
+      (indent-rigidly (region-beginning) (region-end) distance)
+      (push-mark mark t t)
+      ;; Tell the command loop not to deactivate the mark
+      ;; for transient mark mode
+      (setq deactivate-mark nil))))
+
+(defun shift-right ()
   (interactive)
-  (let (-sort-by -arg)
-    (setq -sort-by (ido-completing-read "Sort by:" '( "date" "size" "name" "dir")))
-    (cond
-     ((equal -sort-by "name") (setq -arg "-Al --si --time-style long-iso "))
-     ((equal -sort-by "date") (setq -arg "-Al --si --time-style long-iso -t"))
-     ((equal -sort-by "size") (setq -arg "-Al --si --time-style long-iso -S"))
-     ((equal -sort-by "dir") (setq -arg "-Al --si --time-style long-iso --group-directories-first"))
-     (t (error "logic error 09535" )))
-    (dired-sort-other -arg )))
+  (shift-region 1))
+
+(defun shift-left ()
+  (interactive)
+  (shift-region -1))
+
+;; Bind (shift-right) and (shift-left) function to your favorite keys. I use
+;; the following so that Ctrl-Shift-Right Arrow moves selected text one 
+;; column to the right, Ctrl-Shift-Left Arrow moves selected text one
+;; column to the left:
+
+(global-set-key [C-S-right] 'shift-right)
+(global-set-key [C-S-left] 'shift-left)
+
+;;=========================================================================
+
+
+;;文件按分类排序
+;;(defun xah-dired-sort ()
+;;  "Sort dired dir listing in different ways.
+;;Prompt for a choice.
+;;URL `http://ergoemacs.org/emacs/dired_sort.html'
+;;Version 2015-07-30"
+;;  (interactive)
+;;  (let (-sort-by -arg)
+;;    (setq -sort-by (ido-completing-read "Sort by:" '( "date" "size" "name" "dir")))
+;;    (cond
+;;     ((equal -sort-by "name") (setq -arg "-Al --si --time-style long-iso "))
+;;     ((equal -sort-by "date") (setq -arg "-Al --si --time-style long-iso -t"))
+;;     ((equal -sort-by "size") (setq -arg "-Al --si --time-style long-iso -S"))
+;;     ((equal -sort-by "dir") (setq -arg "-Al --si --time-style long-iso --group-directories-first"))
+;;     (t (error "logic error 09535" )))
+;;    (dired-sort-other -arg )))
 (require 'dired )
-(define-key dired-mode-map (kbd "s") 'xah-dired-sort)
+;;(define-key dired-mode-map (kbd "s") 'xah-dired-sort)
 
 ;;===========================================================================
 ;;图片显示
@@ -202,7 +244,7 @@ Version 2015-07-30"
 
 ;;===========================================================================
 ;;采用标准的复制粘贴剪切
-(cua-mode 1)
+;;(cua-mode 1)
 
 ;;===========================================================================
 ;;设置垃圾回收，在windows 下emacs25版本会频繁触发垃圾回收

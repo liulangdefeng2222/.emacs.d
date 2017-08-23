@@ -5,14 +5,21 @@
 
 ;;(defun 'flycheck-)
 ;;(require 'auctex)
+;; latex配置
+;; After running Emacs and loading a TeX file (C-x C-f file_name.tex),
+;; AUCTeX should load itself automatically.
+;; If it doesn’t happen, you can invoke it with M-x tex-mode
+
+;;(defun 'flycheck-)
+;;(require 'auctex)
 
 (mapc (lambda (mode)
       (add-hook 'LaTeX-mode-hook mode))
       (list
             'auto-fill-mode
             'auto-complete-mode
-            'autopair-mode
-	    'company-ispell
+            ;;'autopair-mode
+	    ;;'company-ispell
 	   ;; 'flyspell-mode	    
             'LaTeX-math-mode
             'linum-mode
